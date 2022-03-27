@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        /* Add a black background color to the top navigation */
+        .topnav {
+            background-color: white;
+            overflow: hidden;
+        }
+
+        /* Style the links inside the navigation bar */
+        .topnav a {
+            float: left;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            font-size: 17px;
+        }
+        body{
+            background-color: lightcyan;
+
+        }
+
+    </style>
+</head>
+<body>
+<div class="row" style="margin:5px">
+    <div class="col-md-10">
+        <h2>Product Management</h2>
+    </div>
+    {% if user.is_authenticated %}
+    <div class="col-md-2"  >
+        <p> Welcome : {{ user }}</p>
+    </div>
+    {% else %}
+        <div class="col-md-2" >
+        <p> Welcome : Guest </p>
+    </div>
+    {% endif %}
+
+</div>
+<div class="topnav" style="border:2px solid blue;margin: 2px">
+    {% if user.is_authenticated %}
+    <a class="active" href="{% url 'home' %}">Home</a>
+    {% else %}
+      <a class="active" href="{% url 'register' %}">Home</a>
+    {% endif %}
+    <a href="#">AboutUs</a>
+    <a href="{% url 'home' %}">Show Report</a>
+    {% if user.is_authenticated %}
+        <a href="{% url 'create' %}">Add Product Detail</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+        <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+</div>
+
+<div style="margin: 2px">
+    {% block body %}
+
+    {% endblock %}
+</div>
+
+<footer style="border:2px solid blue;margin:2px;text-align: center">
+    <p style="margin: 10px">(c)copyright:Deepak:Designed and Developed by Deepak</p>
+</footer>
+
+
+
+</body>
+</html>

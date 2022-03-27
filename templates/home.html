@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+ Home
+{% endblock %}
+
+
+
+
+{% block body %}
+
+
+{% if user.is_authenticated %}
+       <table class="table table-bordered table-hover table-dark">
+           <thead>
+              <tr>
+                  <th>Product Id</th>
+                  <th>Product Name</th>
+                  <th>Price</th>
+                  <th>Vendor</th>
+                  <th>Quantity</th>
+                  <th>Warranty</th>
+                  <th>Operations</th>
+              </tr>
+           </thead>
+           {% for product in product %}
+               <tbody>
+                  <tr>
+                      <td> {{ product.id }}</td>
+                      <td>{{ product.product_name }}</td>
+                      <td>{{ product.price}}</td>
+                      <td>{{ product.vendor }}</td>
+                      <td>{{ product.quantity }}</td>
+                      <td>{{ product.warranty }}</td>
+
+                      <td>
+                          <a href="{% url 'update' product.id %}" class="btn btn-primary">Edit</a>
+                          <a href="{% url 'delete' product.id %}" class="btn btn-danger">Delete</a>
+                      </td>
+                  </tr>
+               </tbody>
+           {% endfor %}
+
+       </table>
+    {% else %}
+       <h2> you have to login first <a href="{% url 'login' %}">login</a> </h2>
+    {% endif %}
+    <button class="btn btn-primary"><a style="color: white" href="{% url 'create' %}">Create Product</a></button>
+
+
+
+{% endblock %}

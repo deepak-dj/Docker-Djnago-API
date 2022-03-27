@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    create product
+{% endblock %}
+
+{% block body %}
+
+    <div class="col-md-6" style="margin-left: 30%;margin-top: 30px;border: 2px solid blue">
+    <div style="margin: 10px" class="col-md-2">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form}}
+            <br>
+            <br>
+            <input type="submit" value="Create" class="btn btn-info">
+        </form>
+    </div>
+    </div>
+
+{% endblock %}

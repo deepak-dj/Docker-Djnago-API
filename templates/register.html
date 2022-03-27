@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block body %}
+<div class="col-md-6" style="margin: 5px; border: 2px solid black">
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>
+                    <p>Name</p>
+                    <input type="text" name="first_name" placeholder="Name">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Email</p>
+                    <input type="email" name="email" placeholder="email">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>User Name</p>
+                    <input type="text" name="username" placeholder="User Name">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <p>Password</p>
+                    <input type="password" name="password" placeholder="Password">
+                </td>
+            </tr>
+
+
+
+
+        </table>
+            <br><br>
+        <input type="submit" value="register">
+        <br>
+        <br>
+        <br>
+    </form>
+<p> if you are registered click <a href="{% url 'login' %}">login</a></p>
+</div>
+{% endblock %}

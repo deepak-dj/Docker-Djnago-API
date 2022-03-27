@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block body %}
+<div class="col-md-6" style="margin: 5px; border: 2px solid black">
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>
+                    <p>User Name</p>
+                    <input type="text" name="username" placeholder="User Name">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <p>Password</p>
+                    <input type="password" name="password" placeholder="Password">
+                </td>
+            </tr>
+
+
+
+
+        </table>
+            <br><br>
+        <input type="submit" value="login">
+        <br>
+        <br>
+        <br>
+    </form>
+<p> if your not a user of this site please <a href="{% url 'register' %}">register</a> first</p>
+</div>
+{% endblock %}
