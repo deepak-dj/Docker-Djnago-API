@@ -1,13 +1,17 @@
-version: "3.8"
+version: "3.9"
 
 services:
   db:
-    image: mysql
-
+    image: postgres
+#    volumes:
+#      - ./data/db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
     environment:
-      - NAME=django_db
-      - USER=root
-      - MYSQL_ROOT_PASSWORD=root
+      - POSTGRES_DB=django_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
@@ -16,8 +20,8 @@ services:
     ports:
       - "8000:8000"
     environment:
-        - NAME=django_db
-        - USER=root
-        - MYSQL_ROOT_PASSWORD=root
+      - POSTGRES_DB=django_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=mysecretpassword
     depends_on:
       - db
